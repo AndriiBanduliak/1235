@@ -1,0 +1,61 @@
+<header
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 border-b backdrop-blur-md"
+>
+  <div class="container mx-auto px-4 md:px-6 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="/" class="text-lg font-semibold tracking-tight hover:opacity-90 transition-opacity">
+      FuturesTradeMate
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center space-x-8">
+      <a href="/" class="nav-link">Dashboard</a>
+      <a href="/trades" class="nav-link">Trades</a>
+      <a href="/analytics" class="nav-link">Analytics</a>
+      <a href="/settings" class="nav-link">Settings</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center space-x-4">
+      <!-- Тоггл темы -->
+      <button
+        id="themeToggle"
+        class="p-2 rounded-full hover:bg-secondary transition-colors duration-200"
+        aria-label="Toggle dark mode"
+      >
+        <!-- Иконки света/темноты (SVG) подставим через JS -->
+        <svg id="themeToggleIcon" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <!-- по умолчанию можно вставить иконку луны, например -->
+          <path d="M21.752 15.002A9.718 9.718 0 0112.998 22C7.201 22 2.5 17.299 2.5 11.502c0-4.21 2.717-7.79 6.707-9.058.513-.167.98.343.82.844A7.498 7.498 0 0012.998 19a7.47 7.47 0 004.213-1.367c.461-.36 1.086.04.938.59z"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobileMenuButton"
+        class="inline-flex items-center justify-center p-2 rounded-md text-foreground md:hidden"
+        aria-expanded="false"
+      >
+        <svg class="block h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobileMenu"
+    class="md:hidden max-h-0 overflow-hidden transition-all duration-300"
+  >
+    <div class="px-4 pt-2 pb-3 space-y-1 border-t">
+      <a href="/" class="mobile-nav-link">Dashboard</a>
+      <a href="/trades" class="mobile-nav-link">Trades</a>
+      <a href="/analytics" class="mobile-nav-link">Analytics</a>
+      <a href="/settings" class="mobile-nav-link">Settings</a>
+    </div>
+  </div>
+</header>

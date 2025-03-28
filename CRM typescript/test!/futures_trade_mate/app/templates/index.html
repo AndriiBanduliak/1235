@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block description %}Monitor your futures trading performance{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4">Dashboard</h1>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="text-sm text-gray-500">Total Portfolio Value</h3>
+      <p class="text-xl font-bold">{{ stats.total_portfolio }}</p>
+      <p class="text-green-500">+12.5%</p>
+    </div>
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="text-sm text-gray-500">Total PnL</h3>
+      <p class="text-xl font-bold">{{ stats.total_pnl }}</p>
+      <p class="text-green-500">+8.2%</p>
+    </div>
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="text-sm text-gray-500">Win Rate</h3>
+      <p class="text-xl font-bold">{{ stats.win_rate }}</p>
+      <p class="text-red-500">-2.1%</p>
+    </div>
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="text-sm text-gray-500">Active Positions</h3>
+      <p class="text-xl font-bold">{{ stats.active_positions }}</p>
+      <p class="text-gray-500">0.00%</p>
+    </div>
+  </div>
+  <canvas id="pnlChart" class="mt-8"></canvas>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  const pnlData = {{ pnl_data | safe }};
+  const ctx = document.getElementById('pnlChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: pnlData.map(item => item.date),
+      datasets: [{
+        label: 'PnL',
+        data: pnlData.map(item => item.value),
+        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+        borderColor: 'rgba(59, 130, 246, 1)',
+        fill: true
+      }]
+    },
+    options: {}
+  });
+</script>
+{% endblock %}

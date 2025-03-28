@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>FuturesTradeMate - {% block title %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <link href="{{ url_for('static', filename='css/tailwind.css') }}" rel="stylesheet">
+</head>
+<body class="bg-background text-foreground">
+  {% include "navbar.html" %}
+  <main class="pt-16">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="py-6 border-t">
+    <div class="container mx-auto px-4">
+      <p class="text-sm text-muted-foreground">© 2023 FuturesTradeMate. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

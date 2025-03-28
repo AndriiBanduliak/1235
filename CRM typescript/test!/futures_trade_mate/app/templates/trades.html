@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Trades{% endblock %}
+{% block description %}Manage your futures trades{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4">Trades</h1>
+  <div class="mb-4">
+    <form method="get" action="/trades">
+      <input type="search" name="search" placeholder="Search trades..." class="border p-2 rounded">
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">Search</button>
+    </form>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for trade in trades %}
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="text-xl font-bold">{{ trade.symbol }}</h3>
+      <p>{{ trade.type }} | {{ trade.status }}</p>
+      <p>Entry Price: ${{ trade.entryPrice }}</p>
+      <p>Current Price: ${{ trade.currentPrice }}</p>
+      <p>PnL: ${{ trade.pnl }} ({{ trade.pnlPercentage }}%)</p>
+      <p>{{ trade.timestamp }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Analytics{% endblock %}
+{% block description %}Analyze your futures trading performance{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 md:px-6 pt-6 pb-16 animate-fade-in">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+    <div class="space-y-0.5">
+      <h2 class="text-2xl font-bold tracking-tight">Analytics</h2>
+      <p class="text-muted-foreground">
+        Track and analyze your futures trading performance.
+      </p>
+    </div>
+    <button class="mt-4 md:mt-0 btn btn-outline flex items-center gap-1">
+      <!-- Иконка экспорта -->
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 4v16m8-8H4"/>
+      </svg>
+      Export
+    </button>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="p-4 bg-card rounded shadow">
+      <h3 class="text-lg font-semibold mb-2">Cumulative P&L</h3>
+      <p class="text-sm text-muted-foreground mb-4">P&L over time</p>
+      <div class="h-[300px] w-full">
+        <canvas id="pnlAnalyticsChart"></canvas>
+      </div>
+    </div>
+    <div class="p-4 bg-card rounded shadow">
+      <h3 class="text-lg font-semibold mb-2">Portfolio Allocation</h3>
+      <p class="text-sm text-muted-foreground mb-4">Allocation by asset</p>
+      <div class="h-[300px] w-full">
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  const pnlData = {{ pnl_data | safe }};
+  const pieData = {{ pie_data | safe }};
+
+  // Линейный график
+  const ctx1 = document.getElementById('pnlAnalyticsChart').getContext('2d');
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: pnlData.map(item => item.date),
+      datasets: [{
+        label: 'PnL',
+        data: pnlData.map(item => item.value),
+        backgroundColor: 'rgba(59, 130, 246, 0.3)',
+        borderColor: 'rgba(59, 130, 246, 1)',
+        fill: true
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  // Круговая диаграмма
+  const ctx2 = document.getElementById('pieChart').getContext('2d');
+  new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: pieData.map(item => item.name),
+      datasets: [{
+        data: pieData.map(item => item.value),
+        backgroundColor: ['#3b82f6', '#10b981', '#6366f1', '#f43f5e']
+      }]
+    },
+    options: { responsive: true }
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Analytics{% endblock %}
+{% block description %}Analyze your futures trading performance{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4">Analytics</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <canvas id="pnlAnalyticsChart"></canvas>
+    </div>
+    <div>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  const pnlData = {{ pnl_data | safe }};
+  const pieData = {{ pie_data | safe }};
+  
+  const ctx1 = document.getElementById('pnlAnalyticsChart').getContext('2d');
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: pnlData.map(item => item.date),
+      datasets: [{
+        label: 'PnL Over Time',
+        data: pnlData.map(item => item.value),
+        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+        borderColor: 'rgba(59, 130, 246, 1)',
+        fill: true
+      }]
+    },
+    options: {}
+  });
+  
+  const ctx2 = document.getElementById('pieChart').getContext('2d');
+  new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: pieData.map(item => item.name),
+      datasets: [{
+        data: pieData.map(item => item.value),
+        backgroundColor: ['#3b82f6','#10b981','#6366f1','#f43f5e']
+      }]
+    },
+    options: {}
+  });
+</script>
+{% endblock %}

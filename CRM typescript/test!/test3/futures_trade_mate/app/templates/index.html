@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block description %}Monitor your futures trading performance{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 md:px-6 pt-6 pb-16 animate-fade-in">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+    <div class="space-y-0.5">
+      <h2 class="text-2xl font-bold tracking-tight">Dashboard</h2>
+      <p class="text-muted-foreground">
+        Monitor your futures trading performance.
+      </p>
+    </div>
+    <button class="mt-4 md:mt-0 btn btn-primary flex items-center gap-1">
+      <!-- Иконка + -->
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 4v16m8-8H4"/>
+      </svg>
+      New Trade
+    </button>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <!-- Card -->
+    <div class="neo-morphism rounded-xl p-6 transition-all duration-200 hover:-translate-y-0.5">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-sm font-medium text-muted-foreground mb-1">Total Portfolio Value</h3>
+          <p class="text-2xl font-semibold tracking-tight">{{ stats.total_portfolio }}</p>
+        </div>
+        <!-- Иконка -->
+        <div class="rounded-full bg-secondary p-2 text-secondary-foreground">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1v22m6-11H6"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="mt-4 flex items-center">
+        <div class="flex items-center rounded-md bg-positive/10 text-positive px-2 py-1 text-xs font-medium">
+          <!-- Иконка стрелка вверх -->
+          <svg class="mr-1 h-3 w-3" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M5 12l5-5 5 5"></path>
+          </svg>
+          <span>12.5%</span>
+        </div>
+        <span class="ml-2 text-xs text-muted-foreground">from previous period</span>
+      </div>
+    </div>
+
+    <!-- Аналогично остальные карточки -->
+    <div class="neo-morphism rounded-xl p-6 hover:-translate-y-0.5 transition-all duration-200">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-sm font-medium text-muted-foreground mb-1">Total PnL</h3>
+          <p class="text-2xl font-semibold tracking-tight">\$7,289.25</p>
+        </div>
+        <div class="rounded-full bg-secondary p-2 text-secondary-foreground">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path d="M12 1v22m6-11H6"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="mt-4 flex items-center">
+        <div class="flex items-center rounded-md bg-positive/10 text-positive px-2 py-1 text-xs font-medium">
+          <svg class="mr-1 h-3 w-3" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M5 12l5-5 5 5"></path>
+          </svg>
+          <span>8.2%</span>
+        </div>
+        <span class="ml-2 text-xs text-muted-foreground">from previous period</span>
+      </div>
+    </div>
+
+    <div class="neo-morphism rounded-xl p-6 hover:-translate-y-0.5 transition-all duration-200">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-sm font-medium text-muted-foreground mb-1">Win Rate</h3>
+          <p class="text-2xl font-semibold tracking-tight">73.5%</p>
+        </div>
+        <div class="rounded-full bg-secondary p-2 text-secondary-foreground">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path d="M12 1v22m6-11H6"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="mt-4 flex items-center">
+        <div class="flex items-center rounded-md bg-negative/10 text-negative px-2 py-1 text-xs font-medium">
+          <!-- Стрелка вниз -->
+          <svg class="mr-1 h-3 w-3" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19 12l-5 5-5-5"></path>
+          </svg>
+          <span>2.1%</span>
+        </div>
+        <span class="ml-2 text-xs text-muted-foreground">from previous period</span>
+      </div>
+    </div>
+
+    <div class="neo-morphism rounded-xl p-6 hover:-translate-y-0.5 transition-all duration-200">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-sm font-medium text-muted-foreground mb-1">Active Positions</h3>
+          <p class="text-2xl font-semibold tracking-tight">7</p>
+        </div>
+        <div class="rounded-full bg-secondary p-2 text-secondary-foreground">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path d="M12 1v22m6-11H6"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="mt-4 flex items-center">
+        <div class="flex items-center rounded-md bg-neutral/10 text-neutral px-2 py-1 text-xs font-medium">
+          <!-- Минус -->
+          <svg class="mr-1 h-3 w-3" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M5 12h14"></path>
+          </svg>
+          <span>0.00%</span>
+        </div>
+        <span class="ml-2 text-xs text-muted-foreground">no change</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="grid gap-4 mt-8 md:grid-cols-2">
+    <div class="animate-fade-in">
+      <h3 class="text-lg font-semibold mb-2">Portfolio Performance</h3>
+      <p class="text-muted-foreground text-sm mb-4">Monthly performance overview</p>
+      <div class="h-[300px] w-full">
+        <canvas id="portfolioChart"></canvas>
+      </div>
+    </div>
+    <div class="animate-fade-in">
+      <h3 class="text-lg font-semibold mb-2">PnL Distribution</h3>
+      <p class="text-muted-foreground text-sm mb-4">PnL by asset</p>
+      <div class="h-[300px] w-full">
+        <canvas id="pnlChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Пример инициализации двух графиков
+  const portfolioData = {{ pnl_data | safe }};
+  const ctx1 = document.getElementById('portfolioChart').getContext('2d');
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: portfolioData.map(item => item.date),
+      datasets: [{
+        label: 'value',
+        data: portfolioData.map(item => item.value),
+        backgroundColor: 'rgba(59, 130, 246, 0.3)',
+        borderColor: 'rgba(59, 130, 246, 1)',
+        fill: true
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  const ctx2 = document.getElementById('pnlChart').getContext('2d');
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: portfolioData.map(item => item.date),
+      datasets: [{
+        label: 'value',
+        data: portfolioData.map(item => item.value),
+        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+      }]
+    },
+    options: { responsive: true }
+  });
+</script>
+{% endblock %}
